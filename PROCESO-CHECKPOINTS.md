@@ -9,7 +9,7 @@
 
 | Checkpoint | Estado | Fuente activa | Commit |
 |---|---|---|---|
-| **CP1** — La estructura existe | ⬜ Pendiente | `memoria` | — |
+| **CP1** — La estructura existe | ✅ Completado | `memoria` | `CP1: estructura, dominio y pantalla listado en memoria` |
 | **CP2** — Las reglas viven en la interfaz | ⬜ Pendiente | `json` | — |
 | **CP3** — Cerrado y conmutable | ⬜ Pendiente | `api` | — |
 | **C4** — Auditoría final | ⬜ Pendiente | — | `"Examen C4 - Auditoría"` |
@@ -24,13 +24,13 @@
 
 | # | Tarea | Estado | Notas |
 |---|---|---|---|
-| 0.1 | Proyecto Vite + React + TypeScript creado | ✅ | `proyecto-gimnasio` |
-| 0.2 | Corregir `.env` → `VITE_FUENTE_DATOS=memoria` | ⬜ | Actualmente tiene valor incorrecto |
-| 0.3 | Copiar `base/datos/` → `src/datos/` | ⬜ | Incluye contrato, index, configuracion |
-| 0.4 | Copiar `mock/semillas.json` → `public/semillas.json` | ⬜ | Para modo json (CP2) |
-| 0.5 | Crear carpetas `src/dominio/`, `src/componentes/`, `src/pantallas/` | ⬜ | |
-| 0.6 | Crear esqueletos `datos.memoria.ts`, `datos.json.ts`, `datos.api.ts` | ⬜ | Los 3 deben existir desde CP1 |
-| 0.7 | Verificar que `npm run dev` arranca sin errores | ⬜ | |
+| 0.1 | Proyecto Vite + React + TypeScript creado | ✅ | `proyecto-gimnasio` | npm create vite@latest proyecto-gimnasio -- --template react-ts
+| 0.2 | crear `.env` → `VITE_FUENTE_DATOS=memoria` | ✅ | |
+| 0.3 | Copiar `base/datos/` → `src/datos/` | ✅ | contrato, index, configuracion |
+| 0.4 | Copiar `mock/semillas.json` → `public/semillas.json` | ✅ | |
+| 0.5 | Crear carpetas `src/dominio/`, `src/componentes/`, `src/pantallas/` | ✅ | |
+| 0.6 | Crear esqueletos `datos.memoria.ts`, `datos.json.ts`, `datos.api.ts` | ✅ | + `dominio/index.ts` |
+| 0.7 | Verificar que `npm run dev` y `npm run build` arrancan sin errores | ✅ | build OK |
 
 ---
 
@@ -44,68 +44,140 @@
 
 | # | Tarea | Estado |
 |---|---|---|
-| 1.1 | Crear interface `Clase` (`id`, `nombre`, `precioUnitario`, `disponibles`, `activo`) | ⬜ |
-| 1.2 | Crear interface `Cliente` (`id`, `nombre`, `cedula`, `telefono`) | ⬜ |
-| 1.3 | Crear type `NuevoCliente` (`nombre`, `cedula`, `telefono`) | ⬜ |
-| 1.4 | Crear interface `Inscripcion` (`id`, `claseId`, `clienteId`, `cantidad`, `total`, `descuentoAplicado`, `estado`) | ⬜ |
-| 1.5 | Crear type `NuevaInscripcion` (`claseId`, `clienteId`, `cantidad`) | ⬜ |
+| 1.1 | Crear interface `Clase` (`id`, `nombre`, `precioUnitario`, `disponibles`, `activo`) | ✅ |
+| 1.2 | Crear interface `Cliente` (`id`, `nombre`, `cedula`, `telefono`) | ✅ |
+| 1.3 | Crear type `NuevoCliente` (`nombre`, `cedula`, `telefono`) | ✅ |
+| 1.4 | Crear interface `Inscripcion` (`id`, `claseId`, `clienteId`, `cantidad`, `total`, `descuentoAplicado`, `estado`) | ✅ |
+| 1.5 | Crear type `NuevaInscripcion` (`claseId`, `clienteId`, `cantidad`) | ✅ |
 
 ### Paso 2 — Capa de datos (esqueletos + memoria)
 
 | # | Tarea | Estado |
 |---|---|---|
-| 2.1 | `datos.memoria.ts` — importar semillas en código (desde `semillas.json`) | ⬜ |
-| 2.2 | Implementar `listarClases()` en memoria | ⬜ |
-| 2.3 | Implementar `listarClientes()` en memoria (puede devolver datos aunque no se usen aún) | ⬜ |
-| 2.4 | Implementar `listarInscripciones()` en memoria (puede devolver datos aunque no se usen aún) | ⬜ |
-| 2.5 | Dejar `crearCliente`, `crearInscripcion`, `retirarInscripcion` con `pendiente()` | ⬜ |
-| 2.6 | `datos.json.ts` — esqueleto que rechaza con `"no implementado"` | ⬜ |
-| 2.7 | `datos.api.ts` — esqueleto que rechaza con `"no implementado"` | ⬜ |
-| 2.8 | Verificar que `obtenerFuenteDatos()` compila y devuelve memoria | ⬜ |
+| 2.1 | `datos.memoria.ts` — importar semillas en código (`semillas.ts`) | ✅ |
+| 2.2 | Implementar `listarClases()` en memoria | ✅ |
+| 2.3 | Implementar `listarClientes()` en memoria (puede devolver datos aunque no se usen aún) | ✅ |
+| 2.4 | Implementar `listarInscripciones()` en memoria (puede devolver datos aunque no se usen aún) | ✅ |
+| 2.5 | Dejar `crearCliente`, `crearInscripcion`, `retirarInscripcion` con `pendiente()` | ✅ |
+| 2.6 | `datos.json.ts` — esqueleto que rechaza con `"no implementado"` | ✅ |
+| 2.7 | `datos.api.ts` — esqueleto que rechaza con `"no implementado"` | ✅ |
+| 2.8 | Verificar que `obtenerFuenteDatos()` compila y devuelve memoria | ✅ |
 
 ### Paso 3 — Componentes reutilizables
 
 | # | Tarea | Estado |
 |---|---|---|
-| 3.1 | `Cabecera` — título "Gimnasio Atlas", subtítulo, fuente activa (`FUENTE_ACTIVA`) | ⬜ |
-| 3.2 | `Badge` — variantes Activo (verde) / Inactivo (gris) | ⬜ |
-| 3.3 | `Tabla` — componente genérico para filas y columnas | ⬜ |
+| 3.1 | `Cabecera` — título "Gimnasio Atlas", subtítulo, fuente activa (`FUENTE_ACTIVA`) | ✅ |
+| 3.2 | `Badge` — variantes Activo (verde) / Inactivo (gris) | ✅ |
+| 3.3 | `Tabla` — componente genérico para filas y columnas | ✅ |
 
 ### Paso 4 — Pantalla 01 — Catálogo de clases
 
 | # | Tarea | Estado |
 |---|---|---|
-| 4.1 | Crear `src/pantallas/PantallaListado.tsx` | ⬜ |
-| 4.2 | Consumir `obtenerFuenteDatos().listarClases()` (no acceder a datos directamente) | ⬜ |
-| 4.3 | Tabla con columnas: Clase, Precio, Disponibles, Estado | ⬜ |
-| 4.4 | Mostrar las 4 semillas (boxeo como Inactivo) | ⬜ |
-| 4.5 | Formatear precio con `$` y 2 decimales | ⬜ |
+| 4.1 | Crear `src/pantallas/PantallaListado.tsx` | ✅ |
+| 4.2 | Consumir `obtenerFuenteDatos().listarClases()` (no acceder a datos directamente) | ✅ |
+| 4.3 | Tabla con columnas: Clase, Precio, Disponibles, Estado | ✅ |
+| 4.4 | Mostrar las 4 semillas (boxeo como Inactivo) | ✅ |
+| 4.5 | Formatear precio con `$` y 2 decimales | ✅ |
 
 ### Paso 5 — Integración en App
 
 | # | Tarea | Estado |
 |---|---|---|
-| 5.1 | Limpiar plantilla por defecto de Vite en `App.tsx` | ⬜ |
-| 5.2 | Montar `Cabecera` + `PantallaListado` | ⬜ |
-| 5.3 | Estilos básicos similares a `01-listado.png` | ⬜ |
+| 5.1 | Limpiar plantilla por defecto de Vite en `App.tsx` | ✅ |
+| 5.2 | Montar `Cabecera` + `PantallaListado` | ✅ |
+| 5.3 | Estilos básicos similares a `01-listado.png` | ✅ |
 
 ### Paso 6 — Documentación y entrega CP1
 
 | # | Tarea | Estado |
 |---|---|---|
-| 6.1 | Crear `DECISIONES.md` (máx. 10 líneas) | ⬜ |
-| 6.2 | Probar con `VITE_FUENTE_DATOS=memoria` + `npm run dev` | ⬜ |
-| 6.3 | Commit descriptivo (ej: `"CP1: estructura, dominio y pantalla listado en memoria"`) | ⬜ |
+| 6.1 | Crear `DECISIONES.md` (máx. 10 líneas) | ✅ |
+| 6.2 | Probar con `VITE_FUENTE_DATOS=memoria` + `npm run dev` | ✅ |
+| 6.3 | Commit descriptivo (ej: `"CP1: estructura, dominio y pantalla listado en memoria"`) | ✅ |
 
 ### Criterios de aceptación CP1
 
-- [ ] Carpetas `dominio`, `datos`, `componentes`, `pantallas` existen
-- [ ] Archivos bloqueados intactos (no modificados en `base/`, `mock/`, `pantallas/`)
-- [ ] Dominio con los 5 tipos exportados
-- [ ] Pantalla 01 muestra 4 clases con badges
-- [ ] Cabecera muestra fuente `memoria`
-- [ ] `DECISIONES.md` creado
-- [ ] App arranca sin errores
+- [x] Carpetas `dominio`, `datos`, `componentes`, `pantallas` existen
+- [x] Archivos bloqueados intactos (no modificados en `base/`, `mock/`, `pantallas/`)
+- [x] Dominio con los 5 tipos exportados
+- [x] Pantalla 01 muestra 4 clases con badges
+- [x] Cabecera muestra fuente `memoria`
+- [x] `DECISIONES.md` creado
+- [x] App arranca sin errores (`npm run build` OK)
+
+### 10 preguntas frecuentes — CP1 (con respuestas)
+
+**1. ¿Por qué el dominio no importa de ninguna otra carpeta?**  
+Porque el dominio solo define *tipos* (`Clase`, `Cliente`, etc.) derivados de las pantallas. No sabe si los datos vienen de memoria, JSON o API. Así la lógica de negocio y la UI quedan desacopladas de la fuente.
+
+**2. ¿Dónde definiste los tipos y de dónde sacaste los campos?**  
+En `src/dominio/index.ts`. Los campos los derivé de `pantallas/01-listado.png` (clases) y de `mock/semillas.json` (clientes e inscripciones para CP2/CP3).
+
+**3. ¿Cómo cambia la fuente de datos sin tocar componentes ni pantallas?**  
+Solo cambio `VITE_FUENTE_DATOS` en `.env` y reinicio. `configuracion.ts` lee esa variable, `index.ts` (fábrica bloqueada) elige `fuenteMemoria`, `fuenteJson` o `fuenteApi`, y el resto de la app sigue llamando `obtenerFuenteDatos()`.
+
+**4. ¿Por qué la pantalla no importa `semillas.ts` directamente?**  
+Porque rompería la arquitectura: la pantalla no debe saber de dónde vienen los datos. Solo llama `obtenerFuenteDatos().listarClases()`. Si mañana cambio a JSON o API, la pantalla no cambia.
+
+**5. ¿Dónde están las semillas en modo memoria?**  
+En `src/datos/semillas.ts`, importadas en código. `datos.memoria.ts` las clona con `structuredClone` a arrays mutables (`clases`, `clientes`, `inscripciones`).
+
+**6. ¿Para qué usas `structuredClone`?**  
+Para copiar las semillas al iniciar y devolver copias en cada `listar*()`. Así la UI no modifica el original y en CP2/CP3 podré mutar disponibilidad e inscripciones sin efectos secundarios.
+
+**7. ¿Qué métodos implementaste en `fuenteMemoria` y cuáles dejaste pendientes?**  
+Implementados: `listarClases`, `listarClientes`, `listarInscripciones`. Pendientes (rechazan con `"no implementado"`): `crearCliente`, `crearInscripcion`, `retirarInscripcion` — se completan en CP2 y CP3.
+
+**8. ¿Por qué existen `datos.json.ts` y `datos.api.ts` si aún no funcionan?**  
+El examen exige que los tres archivos existan desde CP1. La fábrica (`index.ts`, bloqueada) los importa siempre. En CP2 implemento JSON y en CP3 la API.
+
+**9. ¿Cómo muestra la cabecera la fuente activa?**  
+`Cabecera.tsx` importa `FUENTE_ACTIVA` de `src/datos/index.ts`. Esa constante la calcula la fábrica al arrancar según `.env`. No hardcodeo `"memoria"` en la UI.
+
+**10. ¿Qué muestra la pantalla 01 y cómo validas que cumple CP1?**  
+Tabla con 4 clases: nombre, precio (`$8.50`), disponibles y badge Activo/Inactivo. La cuarta (boxeo) debe verse **Inactivo**. Fuente en cabecera: `memoria`. `npm run dev` y `npm run build` sin errores.
+
+---
+
+| Pregunta probable | Dónde está en el código | Respuesta clave |
+|---|---|---|
+| ¿Dónde están los tipos del dominio? | `src/dominio/index.ts` | Interfaces derivadas de las pantallas y semillas; el dominio no importa otras capas |
+| ¿Por qué el contrato importa del dominio? | `src/datos/contrato.ts` (bloqueado) | El contrato define *qué operaciones* existen; el dominio define *qué datos* se mueven |
+| ¿Cómo cambia la fuente sin tocar componentes? | `.env` → `configuracion.ts` → `index.ts` (fábrica) | Solo cambia `VITE_FUENTE_DATOS`; la fábrica devuelve `fuenteMemoria`, `fuenteJson` o `fuenteApi` |
+| ¿Cómo sabe la pantalla qué fuente hay activa? | No lo sabe directamente | `PantallaListado` llama `obtenerFuenteDatos()`; la cabecera lee `FUENTE_ACTIVA` solo para mostrarla |
+| ¿Dónde están las semillas en modo memoria? | `src/datos/semillas.ts` | Importadas en código; `datos.memoria.ts` clona con `structuredClone` para mutar después |
+| ¿Por qué `structuredClone`? | `datos.memoria.ts` | Evita que la UI modifique el objeto original al mutar en CP2/CP3 |
+| ¿Qué métodos implementa memoria en CP1? | `datos.memoria.ts` | Solo lectura: `listarClases`, `listarClientes`, `listarInscripciones` |
+| ¿Por qué json/api rechazan con error? | `datos.json.ts`, `datos.api.ts` | Requisito del examen: los 3 archivos existen desde CP1; se implementan en CP2 y CP3 |
+
+### Archivos creados/modificados en CP1
+
+```
+src/dominio/index.ts              → 5 tipos del dominio
+src/datos/semillas.ts             → semillas en código (modo memoria)
+src/datos/datos.memoria.ts        → fuente memoria (listar*)
+src/datos/datos.json.ts           → esqueleto (pendiente CP2)
+src/datos/datos.api.ts            → esqueleto (pendiente CP3)
+src/componentes/Cabecera.tsx      → título + fuente activa
+src/componentes/Badge.tsx         → badges reutilizables
+src/componentes/Tabla.tsx         → tabla genérica con columnas
+src/pantallas/PantallaListado.tsx → pantalla 01
+src/App.tsx                       → integración
+src/App.css + src/index.css       → estilos
+DECISIONES.md                     → decisiones de diseño (≤10 líneas)
+```
+
+### Flujo de datos CP1
+
+```
+.env (VITE_FUENTE_DATOS=memoria)
+  → configuracion.ts → leerFuente()
+    → index.ts → obtenerFuenteDatos() → fuenteMemoria
+      → datos.memoria.ts → listarClases()
+        → PantallaListado → Tabla + Badge
+```
 
 ---
 
@@ -143,8 +215,8 @@
 
 | # | Tarea | Estado |
 |---|---|---|
-| 4.1 | `Badge` — variantes PENDIENTE / ASISTIDA / RETIRADA (para CP3, opcional aquí) | ⬜ |
-| 4.2 | `Badge` — variante descuento `-10%` | ⬜ |
+| 4.1 | `Badge` — variantes PENDIENTE / ASISTIDA / RETIRADA (para CP3, opcional aquí) | ✅ |
+| 4.2 | `Badge` — variante descuento `-10%` | ✅ |
 | 4.3 | Inputs reutilizables (select, número) si conviene | ⬜ |
 
 ### Paso 5 — Pantalla 02 — Nueva inscripción
@@ -285,14 +357,21 @@
 
 > Aquí anotamos lo que hacemos en cada sesión.
 
-### Sesión 1 — _(fecha)_
+### Sesión 1 — 24/07/2026
 
-- [ ] _Pendiente: primera sesión de trabajo_
+- [x] Fase 0 completada (setup, esqueletos, dominio)
+- [x] CP1 implementado (pantalla listado, componentes, fuente memoria)
+- [x] `DECISIONES.md` creado
+- [x] `npm run build` verificado
+- [x] Commit CP1 realizado
 
 **Notas:**
 
 ```
-(espacio para anotar decisiones, problemas y soluciones)
+- Semillas en modo memoria viven en src/datos/semillas.ts (no en public/).
+- public/semillas.json queda reservado para modo json (CP2).
+- Badge ya incluye variantes para CP2/CP3 (pendiente, asistida, retirada, descuento).
+- La pantalla usa useEffect + obtenerFuenteDatos() sin saber qué fuente hay detrás.
 ```
 
 ---
@@ -345,7 +424,8 @@ src/
     contrato.ts                 ← copia de base/ (CP1)
     index.ts                    ← copia de base/ (CP1)
     configuracion.ts            ← copia de base/ (CP1)
-    datos.memoria.ts            ← CP1 (parcial) → CP2 (completo) → CP3 (completo)
+    semillas.ts                 ← CP1 (semillas en código)
+    datos.memoria.ts            ← CP1 (listar*) → CP2 (crear) → CP3 (completo)
     datos.json.ts               ← CP1 (esqueleto) → CP2 (completo) → CP3 (completo)
     datos.api.ts                ← CP1 (esqueleto) → CP3 (completo)
   componentes/
