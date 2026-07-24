@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
 import type { Clase } from "../dominio";
+import { formatearPrecio } from "../dominio/calculos";
 import { obtenerFuenteDatos } from "../datos/index";
 import { Badge } from "../componentes/Badge";
 import { Tabla } from "../componentes/Tabla";
-
-function formatearPrecio(valor: number): string {
-  return `$${valor.toFixed(2)}`;
-}
 
 export function PantallaListado() {
   const [clases, setClases] = useState<Clase[]>([]);

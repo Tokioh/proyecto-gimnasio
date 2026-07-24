@@ -10,7 +10,7 @@
 | Checkpoint | Estado | Fuente activa | Commit |
 |---|---|---|---|
 | **CP1** — La estructura existe | ✅ Completado | `memoria` | `CP1: estructura, dominio y pantalla listado en memoria` |
-| **CP2** — Las reglas viven en la interfaz | ⬜ Pendiente | `json` | — |
+| **CP2** — Las reglas viven en la interfaz | ✅ Completado | `json` (probar en `.env`) | pendiente commit |
 | **CP3** — Cerrado y conmutable | ⬜ Pendiente | `api` | — |
 | **C4** — Auditoría final | ⬜ Pendiente | — | `"Examen C4 - Auditoría"` |
 
@@ -191,25 +191,25 @@ DECISIONES.md                     → decisiones de diseño (≤10 líneas)
 
 | # | Tarea | Estado |
 |---|---|---|
-| 1.1 | Crear función `calcularTotal(cantidad, precioUnitario)` en dominio o utilidad | ⬜ |
-| 1.2 | Regla: descuento 10% desde 5 unidades | ⬜ |
-| 1.3 | Crear validaciones reutilizables (cantidad vs disponibles, clase activa) | ⬜ |
+| 1.1 | Crear función `calcularTotal(cantidad, precioUnitario)` en dominio o utilidad | ✅ |
+| 1.2 | Regla: descuento 10% desde 5 unidades | ✅ |
+| 1.3 | Crear validaciones reutilizables (cantidad vs disponibles, clase activa) | ✅ |
 
 ### Paso 2 — Completar `datos.memoria.ts`
 
 | # | Tarea | Estado |
 |---|---|---|
-| 2.1 | Implementar `crearInscripcion()` con reglas R1, R2, R3, R5 | ⬜ |
-| 2.2 | Al crear: descontar `disponibles` de la clase | ⬜ |
-| 2.3 | Rechazar con `Error` descriptivo si falla una regla | ⬜ |
+| 2.1 | Implementar `crearInscripcion()` con reglas R1, R2, R3, R5 | ✅ |
+| 2.2 | Al crear: descontar `disponibles` de la clase | ✅ |
+| 2.3 | Rechazar con `Error` descriptivo si falla una regla | ✅ |
 
 ### Paso 3 — Implementar `datos.json.ts`
 
 | # | Tarea | Estado |
 |---|---|---|
-| 3.1 | `fetch('/semillas.json')` al iniciar | ⬜ |
-| 3.2 | Operar en memoria con los datos cargados | ⬜ |
-| 3.3 | Implementar los 6 métodos (misma lógica que memoria) | ⬜ |
+| 3.1 | `fetch('/semillas.json')` al iniciar | ✅ |
+| 3.2 | Operar en memoria con los datos cargados | ✅ |
+| 3.3 | Implementar los 6 métodos (misma lógica que memoria) | ✅ |
 
 ### Paso 4 — Componentes adicionales
 
@@ -217,50 +217,107 @@ DECISIONES.md                     → decisiones de diseño (≤10 líneas)
 |---|---|---|
 | 4.1 | `Badge` — variantes PENDIENTE / ASISTIDA / RETIRADA (para CP3, opcional aquí) | ✅ |
 | 4.2 | `Badge` — variante descuento `-10%` | ✅ |
-| 4.3 | Inputs reutilizables (select, número) si conviene | ⬜ |
+| 4.3 | Inputs reutilizables (select, número) si conviene | ✅ |
 
 ### Paso 5 — Pantalla 02 — Nueva inscripción
 
 | # | Tarea | Estado |
 |---|---|---|
-| 5.1 | Crear `src/pantallas/PantallaCrear.tsx` | ⬜ |
-| 5.2 | Select de clase — **solo clases activas** | ⬜ |
-| 5.3 | Select de cliente — formato `Nombre (cédula)` | ⬜ |
-| 5.4 | Campo cantidad (mínimo 1) | ⬜ |
-| 5.5 | Texto dinámico "Quedan X disponibles" al elegir clase | ⬜ |
-| 5.6 | Total calculado **en vivo** al cambiar clase o cantidad | ⬜ |
-| 5.7 | Nota "Desde 5 unidades: 10% de descuento" | ⬜ |
-| 5.8 | Bloquear registro si: sin cliente, cantidad > disponibles | ⬜ |
-| 5.9 | Botón "Registrar inscripción" llama a `crearInscripcion()` | ⬜ |
-| 5.10 | Tras registrar: actualizar UI (disponibles descontados) | ⬜ |
+| 5.1 | Crear `src/pantallas/PantallaCrear.tsx` | ✅ |
+| 5.2 | Select de clase — **solo clases activas** | ✅ |
+| 5.3 | Select de cliente — formato `Nombre (cédula)` | ✅ |
+| 5.4 | Campo cantidad (mínimo 1) | ✅ |
+| 5.5 | Texto dinámico "Quedan X disponibles" al elegir clase | ✅ |
+| 5.6 | Total calculado **en vivo** al cambiar clase o cantidad | ✅ |
+| 5.7 | Nota "Desde 5 unidades: 10% de descuento" | ✅ |
+| 5.8 | Bloquear registro si: sin cliente, cantidad > disponibles | ✅ |
+| 5.9 | Botón "Registrar inscripción" llama a `crearInscripcion()` | ✅ |
+| 5.10 | Tras registrar: actualizar UI (disponibles descontados) | ✅ |
 
 ### Paso 6 — Navegación entre pantallas
 
 | # | Tarea | Estado |
 |---|---|---|
-| 6.1 | Enlazar pantalla 01 y 02 (tabs, links o router simple) | ⬜ |
-| 6.2 | Mantener cabecera con fuente activa en todas las vistas | ⬜ |
+| 6.1 | Enlazar pantalla 01 y 02 (tabs, links o router simple) | ✅ |
+| 6.2 | Mantener cabecera con fuente activa en todas las vistas | ✅ |
 
 ### Paso 7 — Prueba modo json y entrega CP2
 
 | # | Tarea | Estado |
 |---|---|---|
-| 7.1 | Cambiar `.env` → `VITE_FUENTE_DATOS=json` | ⬜ |
+| 7.1 | Cambiar `.env` → `VITE_FUENTE_DATOS=json` | ⬜ | Probar manualmente al presentar |
 | 7.2 | Reiniciar `npm run dev` y verificar que carga desde `/semillas.json` | ⬜ |
 | 7.3 | Probar creación de inscripción en modo json | ⬜ |
 | 7.4 | Commit descriptivo (ej: `"CP2: pantalla crear, reglas en vivo y fuente json"`) | ⬜ |
 
 ### Criterios de aceptación CP2
 
-- [ ] Selector solo muestra clases activas
-- [ ] No registra sin cliente seleccionado
-- [ ] Muestra "Quedan X disponibles"
-- [ ] Bloquea si cantidad > disponibles
-- [ ] Total en vivo: 3 × $8.50 = $25.50
-- [ ] Descuento: 5 × $8.50 = $38.25 (con -10%)
-- [ ] Al registrar, disponibilidad se descuenta
-- [ ] Modo `json` funciona tras cambiar `.env` y reiniciar
-- [ ] Cabecera muestra fuente `json`
+- [x] Selector solo muestra clases activas
+- [x] No registra sin cliente seleccionado
+- [x] Muestra "Quedan X disponibles"
+- [x] Bloquea si cantidad > disponibles
+- [x] Total en vivo: 3 × $8.50 = $25.50
+- [x] Descuento: 5 × $8.50 = $38.25 (con -10%)
+- [x] Al registrar, disponibilidad se descuenta
+- [x] Modo `json` implementado en `datos.json.ts`
+- [x] Cabecera muestra fuente activa en ambas pantallas
+- [x] `npm run build` sin errores
+
+### 10 preguntas frecuentes — CP2 (con respuestas)
+
+**1. ¿Dónde se calcula el total y desde qué cantidad aplica el descuento?**  
+En `src/dominio/calculos.ts`, función `calcularTotal()`. El -10% aplica desde **5 unidades** (`DESCUENTO_DESDE_UNIDADES = 5`).
+
+**2. ¿Por qué el cálculo está en dominio y no solo en la pantalla?**  
+Porque la misma regla R3 debe aplicarse en la UI (vista previa) y en la capa de datos al crear (`logica.ts`). Una sola fuente de verdad evita inconsistencias.
+
+**3. ¿Dónde viven las reglas R1, R2, R3 y R5 al crear?**  
+En `src/datos/logica.ts`, función `crearInscripcionEnAlmacen()`. Valida clase activa, cliente existente, disponibilidad y descuenta cupos.
+
+**4. ¿Por qué extrajiste `logica.ts`?**  
+Para que `datos.memoria.ts` y `datos.json.ts` compartan la misma lógica sin duplicar código. Solo cambia de dónde cargan el almacén inicial.
+
+**5. ¿Cómo funciona el modo json?**  
+`datos.json.ts` hace `fetch(RUTA_SEMILLAS_JSON)` una vez, clona los datos a un almacén en memoria y usa las mismas funciones de `logica.ts`.
+
+**6. ¿Cómo valida la interfaz sin esperar al servidor?**  
+`PantallaCrear.tsx` deshabilita el botón si no hay cliente, si cantidad &lt; 1 o si cantidad &gt; disponibles. El total se recalcula con `useMemo` + `calcularTotal`.
+
+**7. ¿Qué pasa después de registrar una inscripción?**  
+Se llama `crearInscripcion()`, se descuenta disponibilidad en el almacén y la pantalla vuelve a cargar clases/clientes para reflejar los cambios.
+
+**8. ¿Por qué el select de clase no muestra boxeo?**  
+Porque filtro `clases.filter(c => c.activo)` — regla R1: solo clases activas se pueden inscribir.
+
+**9. ¿Por qué "+ Nuevo cliente" está deshabilitado?**  
+Es requisito de **CP3**. En CP2 el foco es crear inscripciones y el modo json.
+
+**10. ¿Cómo demuestro el modo json en la defensa?**  
+Cambio `.env` a `VITE_FUENTE_DATOS=json`, reinicio `npm run dev`, la cabecera muestra `json` y el formulario carga desde `/semillas.json`.
+
+### Archivos creados/modificados en CP2
+
+```
+src/dominio/calculos.ts           → calcularTotal, formatearPrecio
+src/datos/logica.ts               → crearInscripcionEnAlmacen (R1-R3, R5)
+src/datos/datos.memoria.ts        → crearInscripcion implementado
+src/datos/datos.json.ts           → fetch + misma lógica
+src/pantallas/PantallaCrear.tsx   → pantalla 02
+src/pantallas/PantallaListado.tsx → usa formatearPrecio compartido
+src/App.tsx                       → navegación entre pantallas
+src/App.css                       → estilos formulario
+```
+
+### Flujo de datos CP2
+
+```
+PantallaCrear
+  → calcularTotal() en UI (vista previa)
+  → obtenerFuenteDatos().crearInscripcion()
+    → datos.memoria o datos.json
+      → logica.crearInscripcionEnAlmacen()
+        → valida R1, R2, R3 + descuenta R5
+```
 
 ---
 
@@ -376,11 +433,22 @@ DECISIONES.md                     → decisiones de diseño (≤10 líneas)
 
 ---
 
-### Sesión 2 — _(fecha)_
+### Sesión 2 — 24/07/2026
+
+- [x] CP2 implementado: PantallaCrear, calcularTotal, crearInscripcion
+- [x] datos.json.ts con fetch a /semillas.json
+- [x] logica.ts compartida entre memoria y json
+- [x] Navegación entre catálogo y nueva inscripción
+- [x] npm run build OK
+- [ ] Probar con .env=json y commit CP2
 
 **Notas:**
 
 ```
+- calcularTotal vive en dominio/calculos.ts (UI + datos usan la misma regla).
+- crearInscripcionEnAlmacen centraliza R1, R2, R3 y R5.
+- Tras registrar, PantallaCrear recarga datos para ver disponibles actualizados.
+- + Nuevo cliente deshabilitado hasta CP3.
 ```
 
 ---

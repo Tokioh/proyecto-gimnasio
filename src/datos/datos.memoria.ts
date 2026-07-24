@@ -1,20 +1,29 @@
 import type { FuenteDatos } from "./contrato";
-import type { Clase, Cliente, Inscripcion } from "../dominio";
 import { semillas } from "./semillas";
+import {
+  crearInscripcionEnAlmacen,
+  listarClasesDesde,
+  listarClientesDesde,
+  listarInscripcionesDesde,
+  type AlmacenDatos,
+} from "./logica";
 
 const clonar = <T>(valor: T): T => structuredClone(valor);
 
-const clases: Clase[] = clonar(semillas.clases);
-const clientes: Cliente[] = clonar(semillas.clientes);
-const inscripciones: Inscripcion[] = clonar(semillas.inscripciones);
+const almacen: AlmacenDatos = {
+  clases: clonar(semillas.clases),
+  clientes: clonar(semillas.clientes),
+  inscripciones: clonar(semillas.inscripciones),
+};
 
 const pendiente = () => Promise.reject(new Error("no implementado"));
 
 export const fuenteMemoria: FuenteDatos = {
-  listarClases: () => Promise.resolve(clonar(clases)),
-  listarClientes: () => Promise.resolve(clonar(clientes)),
-  listarInscripciones: () => Promise.resolve(clonar(inscripciones)),
+  listarClases: () => Promise.resolve(listarClasesDesde(almacen)),
+  listarClientes: () => Promise.resolve(listarClientesDesde(almacen)),
+  listarInscripciones: () => Promise.resolve(listarInscripcionesDesde(almacen)),
   crearCliente: pendiente,
-  crearInscripcion: pendiente,
+  crearInscripcion: (datos) =>
+    Promise.resolve(crearInscripcionEnAlmacen(almacen, datos)),
   retirarInscripcion: pendiente,
 };
